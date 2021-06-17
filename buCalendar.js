@@ -32,6 +32,38 @@ buCalendar.calendars = [
 
         datetimeFormat: "YYYYMMDDTHHmmssZ",
     },
+    {
+        name: "Outlook",
+
+        baseUrl: "https://outlook.live.com/calendar/0/deeplink/compose?",
+
+        queryStringParams: "path=/calendar/action/compose"
+            + "&rru=addevent"
+            + "&subject={NAME}"
+            + "&body={DETAILS}"
+            + "&startdt={START_DATE}"
+            + "&enddt={END_DATE}"
+            + "&location={LOCATION}"
+        ,
+
+        datetimeFormat: "YYYY-MM-DDTHH:mm:ssZ",
+    },
+    {
+        name: "Office 365",
+
+        baseUrl: "https://outlook.office.com/calendar/0/deeplink/compose?",
+
+        queryStringParams: "path=/calendar/action/compose"
+            + "&rru=addevent"
+            + "&subject={NAME}"
+            + "&body={DETAILS}"
+            + "&startdt={START_DATE}"
+            + "&enddt={END_DATE}"
+            + "&location={LOCATION}"
+        ,
+
+        datetimeFormat: "YYYY-MM-DDTHH:mm:ssZ",
+    },
 ];
 
 // setup function
@@ -76,8 +108,8 @@ buCalendar.getUrl = function(eventData, calendarConfig , calendar)
         (calendar.baseUrl + calendar.queryStringParams)
         .replace("{NAME}", encodeURIComponent(eventData.name))
         .replace("{DETAILS}", encodeURIComponent(eventData.details ? eventData.details : ""))
-        .replace("{START_DATE}", encodeURIComponent(moment.utc(eventData.startDate).format(calendar.datetimeFormat)))
-        .replace("{END_DATE}", encodeURIComponent(moment.utc(eventData.endDate).format(calendar.datetimeFormat)))
+        .replace("{START_DATE}", encodeURIComponent(moment(eventData.startDate).format(calendar.datetimeFormat)))
+        .replace("{END_DATE}", encodeURIComponent(moment(eventData.endDate).format(calendar.datetimeFormat)))
         .replace("{LOCATION}", encodeURIComponent(eventData.location ? eventData.location : ""))
         )
         + ( calendarConfig.addQueryString ? calendarConfig.addQueryString : "" )
