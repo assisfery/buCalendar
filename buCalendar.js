@@ -20,7 +20,7 @@ buCalendar.calendars = [
 ];
 
 // setup function
-buCalendar.setup = function(elements, eventData, calendars)
+buCalendar.setup = function(elements, eventData, calendars, buttonsClass = "")
 {
     var containerElements = document.querySelectorAll(elements);
 
@@ -35,7 +35,8 @@ buCalendar.setup = function(elements, eventData, calendars)
                 if(calendars[j].name == buCalendar.calendars[k].name)
                 {
                     var btn =  document.createElement("a");
-                    btn.setAttribute("class", "buCalendar-btn");
+
+                    btn.setAttribute("class", "bc-link " + (buttonsClass ? buttonsClass : ""));
 
                     btn.setAttribute("href", buCalendar.getUrl(eventData, calendars[j], buCalendar.calendars[k]));
 
