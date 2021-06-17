@@ -12,8 +12,20 @@
 <body>
     <div class="container my-4">
         <h4>buCalendar</h4>
-        
+        <div id="buttons-area"></div>
 
+        <script>
+            buCalendar.setup("#buttons-area",
+                {
+                    name: "Event 1",
+                },
+                [
+                    {
+                        name: "Google",
+                    },
+                ]
+            );
+        </script>
     </div>
 </body>
 </html>
