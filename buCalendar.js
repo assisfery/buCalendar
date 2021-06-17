@@ -14,6 +14,8 @@ buCalendar.calendars = [
             + "&dates={START_DATE}/{END_DATE}"
             + "&location={LOCATION}"
         ,
+
+        datetimeFormat: "YYYYMMDDTHHmmssZ",
     }
 ];
 
@@ -35,7 +37,7 @@ buCalendar.setup = function(elements, eventData, calendars)
                     var btn =  document.createElement("a");
                     btn.setAttribute("class", "buCalendar-btn");
 
-                    btn.setAttribute("href", buCalendar.getUrl(eventData, buCalendar.calendars[k]));
+                    btn.setAttribute("href", buCalendar.getUrl(eventData, calendars[j], buCalendar.calendars[k]));
 
                     btn.setAttribute("target", "_blank");
                     btn.append(calendars[j].name);
@@ -48,13 +50,16 @@ buCalendar.setup = function(elements, eventData, calendars)
 }
 
 // get url
-buCalendar.getUrl = function(eventData, calendar)
+buCalendar.getUrl = function(eventData, calendarConfig , calendar)
 {
-    return (calendar.baseUrl + calendar.queryStringParams)
+    return (
+        (calendar.baseUrl + calendar.queryStringParams)
         .replace("{NAME}", encodeURIComponent(eventData.name))
         .replace("{DETAILS}", encodeURIComponent(eventData.details))
-        .replace("{START_DATE}", encodeURIComponent(eventData.startDate))
-        .replace("{END_DATE}", encodeURIComponent(eventData.endDate))
+        .replace("{START_DATE}", encodeURIComponent(moment.utc(eventData.startDate).format(calendar.datetimeFormat)))
+        .replace("{END_DATE}", encodeURIComponent(moment.utc(eventData.endDate).format(calendar.datetimeFormat)))
         .replace("{LOCATION}", encodeURIComponent(eventData.location ? eventData.location : ""))
+        )
+        + ( calendarConfig.addQueryString ? calendarConfig.addQueryString : "" )
     ;
 }
