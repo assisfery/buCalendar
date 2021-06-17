@@ -56,7 +56,11 @@ buCalendar.setup = function(elements, eventData, calendars, buttonsClass = "")
                     btn.setAttribute("href", buCalendar.getUrl(eventData, calendars[j], buCalendar.calendars[k]));
 
                     btn.setAttribute("target", "_blank");
-                    btn.append(calendars[j].name);
+
+                    if(!calendars[j].content)
+                        btn.append(calendars[j].name);
+                    else
+                        btn.append(calendars[j].content);
 
                     containerElements[i].appendChild(btn);
                 }
