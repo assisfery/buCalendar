@@ -6,7 +6,7 @@ buCalendar.calendars = [
     {
         name: "Google",
 
-        baseUrl: "https://calendar.google.com/calendar/render",
+        baseUrl: "https://calendar.google.com/calendar/render?",
 
         queryStringParams: "action=TEMPLATE"
             + "&text={NAME}"
@@ -34,7 +34,9 @@ buCalendar.setup = function(elements, eventData, calendars)
                 {
                     var btn =  document.createElement("a");
                     btn.setAttribute("class", "buCalendar-btn");
-                    btn.setAttribute("href", "#");
+
+                    btn.setAttribute("href", buCalendar.getUrl(eventData, buCalendar.calendars[k]));
+
                     btn.setAttribute("target", "_blank");
                     btn.append(calendars[j].name);
 
@@ -43,4 +45,16 @@ buCalendar.setup = function(elements, eventData, calendars)
             }
         }
     }
+}
+
+// get url
+buCalendar.getUrl = function(eventData, calendar)
+{
+    return (calendar.baseUrl + calendar.queryStringParams)
+        .replace("{NAME}", encodeURIComponent(eventData.name))
+        .replace("{DETAILS}", encodeURIComponent(eventData.details))
+        .replace("{START_DATE}", encodeURIComponent(eventData.startDate))
+        .replace("{END_DATE}", encodeURIComponent(eventData.endDate))
+        .replace("{LOCATION}", encodeURIComponent(eventData.location ? eventData.location : ""))
+    ;
 }
