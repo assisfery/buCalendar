@@ -1,6 +1,7 @@
 /* buCalendar 1.0 */
 .bc-link{
     text-decoration: none;
+    margin: 2px 4px;
 }
 
 .bc-btn, .bc-pill{

@@ -16,7 +16,22 @@ buCalendar.calendars = [
         ,
 
         datetimeFormat: "YYYYMMDDTHHmmssZ",
-    }
+    },
+    {
+        name: "Yahoo",
+
+        baseUrl: "https://calendar.yahoo.com/?",
+
+        queryStringParams: "v=60"
+            + "&TITLE={NAME}"
+            + "&DESC={DETAILS}"
+            + "&ST={START_DATE}"
+            + "&ET={END_DATE}"
+            + "&in_loc={LOCATION}"
+        ,
+
+        datetimeFormat: "YYYYMMDDTHHmmssZ",
+    },
 ];
 
 // setup function
@@ -56,7 +71,7 @@ buCalendar.getUrl = function(eventData, calendarConfig , calendar)
     return (
         (calendar.baseUrl + calendar.queryStringParams)
         .replace("{NAME}", encodeURIComponent(eventData.name))
-        .replace("{DETAILS}", encodeURIComponent(eventData.details))
+        .replace("{DETAILS}", encodeURIComponent(eventData.details ? eventData.details : ""))
         .replace("{START_DATE}", encodeURIComponent(moment.utc(eventData.startDate).format(calendar.datetimeFormat)))
         .replace("{END_DATE}", encodeURIComponent(moment.utc(eventData.endDate).format(calendar.datetimeFormat)))
         .replace("{LOCATION}", encodeURIComponent(eventData.location ? eventData.location : ""))
