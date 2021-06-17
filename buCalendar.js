@@ -15,7 +15,7 @@ buCalendar.calendars = [
             + "&location={LOCATION}"
         ,
 
-        datetimeFormat: "YYYYMMDDTHHmmssZ",
+        datetimeFormat: "YYYYMMDDTHHmmss", //+ "Z"
     },
     {
         name: "Yahoo",
@@ -30,7 +30,7 @@ buCalendar.calendars = [
             + "&in_loc={LOCATION}"
         ,
 
-        datetimeFormat: "YYYYMMDDTHHmmssZ",
+        datetimeFormat: "YYYYMMDDTHHmmss",
     },
     {
         name: "Outlook",
@@ -46,7 +46,7 @@ buCalendar.calendars = [
             + "&location={LOCATION}"
         ,
 
-        datetimeFormat: "YYYY-MM-DDTHH:mm:ssZ",
+        datetimeFormat: "YYYY-MM-DDTHH:mm:ss",
     },
     {
         name: "Office 365",
@@ -62,7 +62,7 @@ buCalendar.calendars = [
             + "&location={LOCATION}"
         ,
 
-        datetimeFormat: "YYYY-MM-DDTHH:mm:ssZ",
+        datetimeFormat: "YYYY-MM-DDTHH:mm:ss",
     },
 ];
 
@@ -108,8 +108,8 @@ buCalendar.getUrl = function(eventData, calendarConfig , calendar)
         (calendar.baseUrl + calendar.queryStringParams)
         .replace("{NAME}", encodeURIComponent(eventData.name))
         .replace("{DETAILS}", encodeURIComponent(eventData.details ? eventData.details : ""))
-        .replace("{START_DATE}", encodeURIComponent(moment(eventData.startDate).format(calendar.datetimeFormat)))
-        .replace("{END_DATE}", encodeURIComponent(moment(eventData.endDate).format(calendar.datetimeFormat)))
+        .replace("{START_DATE}", encodeURIComponent(moment(eventData.startDate).format(calendar.datetimeFormat) + "Z"))
+        .replace("{END_DATE}", encodeURIComponent(moment(eventData.endDate).format(calendar.datetimeFormat) + "Z"))
         .replace("{LOCATION}", encodeURIComponent(eventData.location ? eventData.location : ""))
         )
         + ( calendarConfig.addQueryString ? calendarConfig.addQueryString : "" )
