@@ -41,3 +41,88 @@ buCalendar.setup("#buttons-area",
 "bc-pill"
 );
 ```
+
+## Configurations samples
+You can select just specifics calendars.
+```js
+buCalendar.setup("#buttons-area",
+{
+    name: "Event 1",
+    details: "The best event",
+    startDate: "2021-06-17 20:30:00",
+    endDate: "2021-06-17 21:00:00",
+    location: "Cabo Verde"
+},
+[
+    {
+        name: "Google",
+    },
+    {
+        name: "Office 365",
+    },
+],
+"bc-pill"
+);
+```
+
+Adicional query string to a calendar
+```js
+buCalendar.setup("#buttons-area",
+{
+    name: "Event 1",
+    details: "The best event",
+    startDate: "2021-06-17 20:30:00",
+    endDate: "2021-06-17 21:00:00",
+    location: "Cabo Verde"
+},
+[
+    {
+        name: "Google",
+        addQueryString: "&add=user@example.com"
+    },
+    {
+        name: "Office 365",
+    },
+],
+"bc-pill"
+);
+```
+
+Change content of calendar button
+```js
+buCalendar.setup("#buttons-area",
+{
+    name: "Event 1",
+    details: "The best event",
+    startDate: "2021-06-17 20:30:00",
+    endDate: "2021-06-17 21:00:00",
+    location: "Cabo Verde"
+},
+[
+    {
+        name: "Google",
+        content: "Google <b>Calendar</b>"
+    },
+],
+"bc-pill"
+);
+```
+
+Change button style, you can add your button class,
+or use "bc-pill", "bc-btn" or just let it empty
+```js
+buCalendar.setup("#buttons-area",
+{
+    name: "Event 1",
+    details: "The best event",
+    startDate: "2021-06-17 20:30:00",
+    endDate: "2021-06-17 21:00:00",
+    location: "Cabo Verde"
+},
+[
+    {
+        name: "Google",
+    },
+],
+"bc-btn"
+);

@@ -90,9 +90,9 @@ buCalendar.setup = function(elements, eventData, calendars, buttonsClass = "")
                     btn.setAttribute("target", "_blank");
 
                     if(!calendars[j].content)
-                        btn.append(calendars[j].name);
+                        btn.innerHTML = calendars[j].name;
                     else
-                        btn.append(calendars[j].content);
+                        btn.innerHTML = calendars[j].content;
 
                     containerElements[i].appendChild(btn);
                 }
