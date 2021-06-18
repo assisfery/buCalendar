@@ -1,5 +1,6 @@
 # buCalendar
 Simple library to create buttons to add events to your calendar.
+[![](https://data.jsdelivr.com/v1/package/gh/assisfery/buCalendar/badge)](https://www.jsdelivr.com/package/gh/assisfery/buCalendar)
 
 Demo: [link to demostration](https://assisfery.github.io/buCalendar/)
 
