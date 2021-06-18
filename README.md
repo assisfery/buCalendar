@@ -4,7 +4,7 @@ Simple library to create buttons to add events to your calendar.
 Demo: [link to demostration](https://assisfery.github.io/buCalendar/)
 
 ## Installation
-Just include the myjs.min.js file in you web page.
+Just include the js and css files in you web page.
 
 ```html
 <link href="buCalendar.css" rel="stylesheet">
@@ -12,7 +12,7 @@ Just include the myjs.min.js file in you web page.
 ```
 
 ## Setup
-Create calendar button in simple way.
+Create calendar buttons in simple way.
 ```js
 buCalendar.setup("#buttons-area",
 {
