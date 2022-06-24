@@ -13,6 +13,12 @@ Just include the js and css files in you web page.
 <script src="https://cdn.jsdelivr.net/gh/assisfery/buCalendar@1.0/js/buCalendar.min.js"></script>
 ```
 
+## Dependences
+buCalendar depends on moment library, so we should import it.
+```html
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+```
+
 ## Setup
 Create calendar buttons in simple way.
 ```js
