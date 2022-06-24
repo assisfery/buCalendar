@@ -1,7 +1,8 @@
-/* buCalendar 1.0 */
+/* buCalendar 1.1 */
 .bc-link{
     text-decoration: none;
     margin: 2px 4px;
+    display: inline-block;
 }
 
 .bc-btn, .bc-pill{

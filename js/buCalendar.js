@@ -1,4 +1,4 @@
-// buCalendar 1.0
+// buCalendar 1.1
 var buCalendar = {};
 
 // all suported calendars
