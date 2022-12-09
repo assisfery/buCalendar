@@ -64,6 +64,28 @@ buCalendar.calendars = [
 
         datetimeFormat: "YYYY-MM-DDTHH:mm:ss",
     },
+    {
+        name: "ICS file",
+
+        type: "ics",
+
+        datetimeFormat: "YYYYMMDDTHHmmss",
+
+        downloadTemplate: "BEGIN:VCALENDAR\n"
+            + "VERSION:2.0\n"            
+            + "BEGIN:VEVENT\n"
+
+            + "DTSTART:{START_DATE}\n"
+            + "DTEND:{END_DATE}\n"
+
+            + "SUMMARY:{NAME}\n"
+            + "DESCRIPTION:{DETAILS}\n"
+            + "LOCATION:{LOCATION}\n"
+
+            + "END:VEVENT\n"
+            + "END:VCALENDAR"
+        ,
+    },
 ];
 
 // setup function
@@ -85,9 +107,30 @@ buCalendar.setup = function(elements, eventData, calendars, buttonsClass = "")
 
                     btn.setAttribute("class", "bc-link " + (buttonsClass ? buttonsClass : ""));
 
-                    btn.setAttribute("href", buCalendar.getUrl(eventData, calendars[j], buCalendar.calendars[k]));
+                    if(buCalendar.calendars[k].type == "ics")
+                    {
+                        buCalendar.cacheICSCalendarType = buCalendar.calendars[k];
 
-                    btn.setAttribute("target", "_blank");
+                        btn.setAttribute("href", "#");
+                        btn.addEventListener("click", function() {
+
+                            buCalendar.download(
+                                "invite.ics",
+                                buCalendar.cacheICSCalendarType.downloadTemplate
+                                    .replace("{START_DATE}", moment(eventData.startDate).format(buCalendar.cacheICSCalendarType.datetimeFormat) + "Z")
+                                    .replace("{END_DATE}", moment(eventData.endDate).format(buCalendar.cacheICSCalendarType.datetimeFormat) + "Z")
+                                    .replace("{NAME}", eventData.name)
+                                    .replace("{DETAILS}", eventData.details)
+                                    .replace("{LOCATION}", eventData.location)
+                            );
+
+                        });
+                    }
+                    else
+                    {
+                        btn.setAttribute("href", buCalendar.getUrl(eventData, calendars[j], buCalendar.calendars[k]));
+                        btn.setAttribute("target", "_blank");
+                    }                    
 
                     if(!calendars[j].content)
                         btn.innerHTML = calendars[j].name;
@@ -114,4 +157,18 @@ buCalendar.getUrl = function(eventData, calendarConfig , calendar)
         )
         + ( calendarConfig.addQueryString ? calendarConfig.addQueryString : "" )
     ;
+}
+
+// dowload file
+buCalendar.download = function(filename, text) {
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
 }
