@@ -45,6 +45,9 @@ buCalendar.setup("#buttons-area",
     {
         name: "Office 365",
     },
+    {
+        name: "ICS file",
+    },
 ],
 "bc-pill"
 );
