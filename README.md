@@ -9,8 +9,8 @@ Demo: [link to demostration](https://assisfery.github.io/buCalendar/)
 Just include the js and css files in you web page.
 
 ```html
-<link href="https://cdn.jsdelivr.net/gh/assisfery/buCalendar@1.1/css/buCalendar.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/gh/assisfery/buCalendar@1.1/js/buCalendar.min.js"></script>
+<link href="https://cdn.jsdelivr.net/gh/assisfery/buCalendar@1.2/css/buCalendar.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/gh/assisfery/buCalendar@1.2/js/buCalendar.min.js"></script>
 ```
 
 ## Dependences
