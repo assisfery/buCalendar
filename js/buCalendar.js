@@ -111,7 +111,7 @@ buCalendar.setup = function(elements, eventData, calendars, buttonsClass = "")
                     {
                         buCalendar.cacheICSCalendarType = buCalendar.calendars[k];
 
-                        btn.setAttribute("href", "#");
+                        btn.setAttribute("href", "#!");
                         btn.addEventListener("click", function() {
 
                             buCalendar.download(
